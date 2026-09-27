@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Privacy — Curfew</title>
+  <meta name="description" content="How Curfew handles your data, and a link to the full Curfew privacy policy.">
+  <link rel="canonical" href="https://curfewapp.co/privacy/">
+  <meta name="theme-color" content="#161616">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Curfew">
+  <meta property="og:title" content="Privacy — Curfew">
+  <meta property="og:description" content="Self-directed screen-time blocking for late-night impulse control.">
+  <meta property="og:url" content="https://curfewapp.co/privacy/">
+  <meta property="og:image" content="https://curfewapp.co/assets/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="preload" href="/assets/background-night-landscape.webp" as="image" type="image/webp">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="/" aria-label="Curfew home">
+        <img src="/assets/moon.svg" width="26" height="26" alt="">
+        Curfew
+      </a>
+      <nav class="site-nav" aria-label="Main">
+        <a href="/">Home</a>
+        <a href="/privacy/" aria-current="page">Privacy</a>
+        <a href="/support/">Support</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="page">
+    <div class="container">
+      <h1 class="page-title on-image">Privacy</h1>
+      <p class="page-lede on-image">
+        Curfew helps with something personal, so privacy is built into how it works — starting
+        with the apps you choose to block.
+      </p>
+
+      <!--
+        The full policy lives on its own hosted page. /privacy-policy redirects there — set
+        the real URL in netlify.toml. To embed the policy here instead, replace this
+        section with the policy text inside <div class="glass-card prose">…</div>.
+      -->
+      <section class="page-section" aria-labelledby="apps-title">
+        <div class="glass-card contact-card">
+          <h2 id="apps-title" class="card-value" style="font-family: var(--font-sans)">Your app choices stay on your iPhone</h2>
+          <p class="caption" style="font-size: 15px; margin-top: 8px">
+            Curfew blocks apps using Apple's Screen Time framework (Family Controls). You pick
+            apps with Apple's own picker, and the system gives Curfew only opaque tokens —
+            Curfew never learns which apps you chose.
+          </p>
+        </div>
+      </section>
+
+      <section class="page-section" aria-labelledby="policy-title">
+        <h2 id="policy-title" class="on-image">Full privacy policy</h2>
+        <div class="glass-card contact-card">
+          <p style="color: var(--text-secondary)">
+            Read the complete policy for details on what Curfew stores and why.
+          </p>
+          <div class="hero-actions" style="margin-top: 20px">
+            <a class="button button-primary" href="/privacy-policy">Read the privacy policy</a>
+          </div>
+          <p class="caption">
+            Questions about your data? Email
+            <a href="mailto:support@curfewapp.co">support@curfewapp.co</a>.
+          </p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <a class="brand" href="/" style="font-size: 20px">
+        <img src="/assets/moon.svg" width="20" height="20" alt="">
+        Curfew
+      </a>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="/privacy/">Privacy</a>
+        <a href="/support/">Support</a>
+        <a href="mailto:support@curfewapp.co">support@curfewapp.co</a>
+      </nav>
+      <p class="footer-legal">© 2026 Curfew. Apple, iPhone and App Store are trademarks of Apple Inc.</p>
+    </div>
+  </footer>
+</body>
+</html>

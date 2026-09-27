@@ -1,0 +1,795 @@
+/*
+ * Curfew marketing site.
+ * Tokens mirror the app's src/constants/theme.ts (curfew-app repo) — keep
+ * the two in sync if the app palette changes.
+ */
+
+:root {
+  /* colors (theme.ts → colors) */
+  --background: #161616;
+  --surface: #201f1d;
+  --surface-muted: #2a2926;
+  --border: #33322e;
+  --text-primary: #f5efe0;
+  --text-secondary: #b9b3a1;
+  --text-muted: #7d786a;
+  --primary: #f0997b;
+  --primary-muted: #3a2a22;
+  --on-primary: #161616;
+  --night: #1b2138;
+  --night-muted: #242b47;
+  --image-scrim: rgba(10, 11, 18, 0.45);
+  --glass-tint: rgba(22, 22, 22, 0.55);
+
+  /* spacing (theme.ts → spacing) */
+  --xs: 4px;
+  --sm: 8px;
+  --md: 16px;
+  --lg: 24px;
+  --xl: 32px;
+  --xxl: 48px;
+
+  /* radii (theme.ts → radii) */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  /* The streak numeral: Georgia oldstyle, as in the app's Stats screen. */
+  --font-numeral: Georgia, "Times New Roman", serif;
+
+  /* theme.ts → imageTextShadow */
+  --image-text-shadow: 0 1px 6px rgba(0, 0, 0, 0.85);
+
+  --max-width: 1080px;
+
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--background);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/*
+ * The app's night-landscape illustration, full-bleed and fixed behind the
+ * page, with the same scrim ScreenContainer uses. A fixed pseudo-element
+ * rather than background-attachment: fixed, which iOS Safari ignores.
+ */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+body::before {
+  background-color: var(--night);
+  background-image: url("/assets/background-night-landscape.jpg");
+  background-image: image-set(
+    url("/assets/background-night-landscape.webp") type("image/webp"),
+    url("/assets/background-night-landscape.jpg") type("image/jpeg")
+  );
+  background-size: cover;
+  /* Keeps the moon and the sunset horizon in frame on wide screens. */
+  background-position: 70% 26%;
+}
+
+body::after {
+  background:
+    linear-gradient(to bottom, rgba(10, 11, 18, 0) 55%, rgba(10, 11, 18, 0.55) 100%),
+    var(--image-scrim);
+}
+
+a {
+  color: var(--primary);
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+img,
+svg {
+  display: block;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.15;
+  margin: 0;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+}
+
+/* Text sitting directly on the background image (not inside a card). */
+.on-image {
+  text-shadow: var(--image-text-shadow);
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--md);
+  top: -100px;
+  padding: var(--sm) var(--md);
+  background: var(--primary);
+  color: var(--on-primary);
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  z-index: 10;
+}
+
+.skip-link:focus {
+  top: var(--md);
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--md);
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding: 0 var(--lg);
+  }
+}
+
+/* ---------- Header ---------- */
+
+.site-header {
+  padding: var(--md) 0;
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--md);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-primary);
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 24px;
+  text-shadow: var(--image-text-shadow);
+}
+
+.site-nav {
+  display: flex;
+  gap: var(--xs);
+}
+
+.site-nav a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  text-shadow: var(--image-text-shadow);
+}
+
+.site-nav a:hover {
+  color: var(--text-primary);
+}
+
+.site-nav a[aria-current="page"] {
+  color: var(--primary);
+  background: var(--primary-muted);
+  text-shadow: none;
+}
+
+@media (max-width: 420px) {
+  .site-nav a {
+    padding: 6px 8px;
+    font-size: 14px;
+  }
+  .brand {
+    font-size: 21px;
+  }
+}
+
+main {
+  flex: 1;
+}
+
+/* ---------- Buttons (PrimaryButton.tsx) ---------- */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: var(--md) var(--lg);
+  border-radius: var(--radius-md);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: opacity 120ms ease;
+}
+
+.button:hover {
+  text-decoration: none;
+}
+
+.button:active {
+  opacity: 0.85;
+}
+
+.button-primary {
+  background: var(--primary);
+  color: var(--on-primary);
+}
+
+.button-primary:hover {
+  background: #f3a88f;
+}
+
+.button-secondary {
+  background: var(--surface);
+  border-color: var(--border);
+  color: var(--text-primary);
+}
+
+.button-secondary:hover {
+  background: var(--surface-muted);
+}
+
+.button svg {
+  flex: none;
+}
+
+/* ---------- Cards ---------- */
+
+/* GlassCard.tsx: backdrop blur + dark tint, so the illustration shows through. */
+.glass-card {
+  position: relative;
+  border-radius: var(--radius-md);
+  padding: var(--md);
+  background: var(--glass-tint);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass-card {
+    background: rgba(22, 22, 22, 0.85);
+  }
+}
+
+/* The opaque card from the Stats/Settings screens. */
+.card {
+  border-radius: var(--radius-md);
+  padding: var(--md);
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.card-label {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: var(--xs);
+}
+
+.card-value {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.35;
+}
+
+.caption {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.glass-card .caption {
+  color: var(--text-secondary);
+}
+
+/* StatusBadge.tsx */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sm);
+  padding: var(--xs) var(--md);
+  border-radius: var(--radius-pill);
+  background: var(--primary-muted);
+  color: var(--primary);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.status-badge::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.45;
+  }
+}
+
+/* ---------- Home: hero ---------- */
+
+.hero {
+  padding: var(--xxl) 0 72px;
+}
+
+.hero .container {
+  display: grid;
+  gap: var(--xxl);
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .hero {
+    padding: 72px 0 96px;
+  }
+  .hero .container {
+    grid-template-columns: 1.15fr 0.85fr;
+  }
+}
+
+.hero-copy {
+  max-width: 560px;
+}
+
+.hero-mark {
+  margin-bottom: var(--md);
+}
+
+.eyebrow {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: var(--md);
+}
+
+.hero h1 {
+  font-size: clamp(40px, 7vw, 64px);
+  letter-spacing: -0.01em;
+}
+
+.hero-pitch {
+  margin-top: var(--lg);
+  font-size: 18px;
+  color: var(--text-secondary);
+  max-width: 34em;
+}
+
+.hero-actions {
+  margin-top: var(--xl);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--md);
+  align-items: center;
+}
+
+.hero-note {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+/* A static rendering of the app's Home screen, built from the same parts. */
+.app-preview {
+  width: 100%;
+  max-width: 340px;
+  justify-self: center;
+  padding: var(--lg) var(--md) var(--md);
+  border-radius: 36px;
+  border: 1px solid rgba(245, 239, 224, 0.12);
+  background: rgba(10, 11, 18, 0.35);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.app-preview-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 1.2;
+}
+
+.app-preview .status-badge {
+  margin: var(--md) 0 var(--xs);
+}
+
+.app-preview-helper {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: var(--lg);
+}
+
+.app-preview .glass-card + .glass-card {
+  margin-top: 12px;
+}
+
+/* ---------- Sections ---------- */
+
+.section {
+  padding: 72px 0;
+}
+
+.section-header {
+  max-width: 640px;
+  margin-bottom: var(--xl);
+}
+
+.section-header h2 {
+  font-size: clamp(30px, 4.5vw, 40px);
+}
+
+.section-header p {
+  margin-top: var(--md);
+  color: var(--text-secondary);
+  font-size: 17px;
+}
+
+.feature-grid {
+  display: grid;
+  gap: var(--md);
+}
+
+@media (min-width: 700px) {
+  .feature-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.feature {
+  padding: var(--lg);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.feature h3 {
+  font-size: 22px;
+}
+
+.feature p {
+  color: var(--text-secondary);
+  font-size: 15px;
+}
+
+.feature-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: var(--primary-muted);
+  color: var(--primary);
+}
+
+.feature-tag {
+  align-self: flex-start;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-muted);
+  color: var(--text-secondary);
+}
+
+.streak-demo {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.streak-number {
+  font-family: var(--font-numeral);
+  font-variant-numeric: oldstyle-nums;
+  font-weight: 500;
+  font-size: 56px;
+  line-height: 1;
+  color: var(--primary);
+}
+
+.streak-label {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--md);
+  counter-reset: step;
+}
+
+@media (min-width: 800px) {
+  .steps {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.steps li {
+  counter-increment: step;
+}
+
+.steps li::before {
+  content: counter(step);
+  display: block;
+  font-family: var(--font-numeral);
+  font-variant-numeric: oldstyle-nums;
+  font-size: 36px;
+  line-height: 1;
+  color: var(--primary);
+  margin-bottom: 12px;
+}
+
+.steps h3 {
+  font-family: var(--font-sans);
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.steps p {
+  color: var(--text-secondary);
+  font-size: 15px;
+}
+
+.cta {
+  text-align: center;
+  padding: var(--xxl) var(--lg);
+}
+
+.cta h2 {
+  font-size: clamp(28px, 4vw, 36px);
+}
+
+.cta p {
+  margin: 12px auto var(--lg);
+  max-width: 30em;
+  color: var(--text-secondary);
+}
+
+/* ---------- Inner pages (Privacy, Support) ---------- */
+
+.page {
+  padding: var(--xxl) 0 72px;
+}
+
+.page .container {
+  max-width: 760px;
+}
+
+.page-title {
+  font-size: clamp(36px, 6vw, 52px);
+}
+
+.page-lede {
+  margin-top: var(--md);
+  font-size: 18px;
+  color: var(--text-secondary);
+}
+
+.page-section {
+  margin-top: var(--xl);
+}
+
+.page-section > h2 {
+  font-size: 26px;
+  margin-bottom: var(--md);
+}
+
+.stack {
+  display: grid;
+  gap: 12px;
+}
+
+.contact-card {
+  padding: var(--lg);
+}
+
+.contact-email {
+  display: inline-block;
+  margin: var(--xs) 0 var(--md);
+  font-size: clamp(20px, 5vw, 26px);
+  font-weight: 600;
+  color: var(--text-primary);
+  text-decoration-color: var(--primary);
+  word-break: break-word;
+}
+
+.contact-card .caption {
+  margin-top: var(--md);
+}
+
+.plain-list {
+  margin: 12px 0 0;
+  padding-left: 1.2em;
+  color: var(--text-secondary);
+  font-size: 15px;
+}
+
+.plain-list li + li {
+  margin-top: 6px;
+}
+
+/* FAQ — native <details>, no JS */
+.faq details {
+  padding: 0;
+}
+
+.faq summary {
+  list-style: none;
+  cursor: pointer;
+  padding: var(--md) 48px var(--md) var(--md);
+  font-weight: 600;
+  position: relative;
+  border-radius: var(--radius-md);
+}
+
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq summary::after {
+  content: "";
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  width: 9px;
+  height: 9px;
+  border-right: 2px solid var(--text-secondary);
+  border-bottom: 2px solid var(--text-secondary);
+  transform: translateY(-70%) rotate(45deg);
+  transition: transform 150ms ease;
+}
+
+.faq details[open] summary::after {
+  transform: translateY(-30%) rotate(-135deg);
+}
+
+.faq .answer {
+  padding: 0 var(--md) var(--md);
+  color: var(--text-secondary);
+  font-size: 15px;
+}
+
+.faq .answer p + p {
+  margin-top: 10px;
+}
+
+.prose {
+  color: var(--text-secondary);
+}
+
+.prose h2 {
+  font-size: 24px;
+  color: var(--text-primary);
+  margin: var(--xl) 0 12px;
+}
+
+.prose h3 {
+  font-family: var(--font-sans);
+  font-size: 17px;
+  color: var(--text-primary);
+  margin: var(--lg) 0 var(--sm);
+}
+
+.prose p + p,
+.prose ul,
+.prose ol {
+  margin-top: 12px;
+}
+
+.prose strong {
+  color: var(--text-primary);
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  padding: var(--xl) 0;
+  border-top: 1px solid rgba(245, 239, 224, 0.08);
+  background: rgba(10, 11, 18, 0.55);
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.site-footer .container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--md) var(--lg);
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--md);
+}
+
+.footer-links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  color: var(--text-primary);
+  text-decoration: underline;
+}
+
+.footer-legal {
+  width: 100%;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .status-badge::before {
+    animation: none;
+  }
+}
