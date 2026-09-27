@@ -3,10 +3,9 @@
   publish = "."
 
 # ---------------------------------------------------------------------------
-# Placeholder links. Every "Download on the App Store" button on the site
-# points at /download, and the Privacy page's "Read the privacy policy"
-# button points at /privacy-policy, so each real URL only needs to be set
-# once, here.
+# Placeholder link. Every "Download on the App Store" button on the site
+# points at /download, so the real App Store URL only needs to be set once,
+# here.
 # ---------------------------------------------------------------------------
 
 # TODO: replace with the real App Store listing once it's live, e.g.
@@ -15,12 +14,6 @@
 [[redirects]]
   from = "/download"
   to = "/#download"
-  status = 302
-
-# TODO: replace with the hosted privacy policy's URL.
-[[redirects]]
-  from = "/privacy-policy"
-  to = "/privacy/"
   status = 302
 
 [[headers]]

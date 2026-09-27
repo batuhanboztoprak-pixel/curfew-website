@@ -21,7 +21,7 @@ python3 -m http.server 8000
 ```
 
 Paths are root-relative (`/styles.css`, `/privacy/`), so serve from the repo root rather than
-opening the files directly. The `/download` and `/privacy-policy` redirects only work on Netlify.
+opening the files directly. The `/download` redirect only works on Netlify.
 
 ## Deploy on Netlify
 
@@ -29,15 +29,16 @@ opening the files directly. The `/download` and `/privacy-policy` redirects only
 2. Leave the build command empty; the publish directory is `.` (already set in `netlify.toml`).
 3. **Domain management → Add a domain** → `curfewapp.co` (and `www.curfewapp.co`).
 
-## Placeholder links to fill in
+## App Store link
 
-Both live in `netlify.toml` — change the `to =` line, commit, and every button on the site
-follows:
+Every download button points at `/download`, a redirect in `netlify.toml`. Once the listing is
+live, change its `to =` line to the App Store URL and commit. Until then it falls back to the
+home page's download section.
 
-- `/download` → the App Store listing (currently falls back to the home page's download section)
-- `/privacy-policy` → the hosted privacy policy
+## Privacy policy
 
-To embed the policy on the Privacy page instead of linking out, replace the marked section in
+The Privacy page links directly to the separately hosted policy at
+<https://privacy.curfewapp.co>. To embed the policy on the Privacy page instead, replace the marked section in
 `privacy/index.html` with the policy text inside `<div class="glass-card prose">…</div>` — the
 `.prose` styles already cover headings, paragraphs and lists.
 
